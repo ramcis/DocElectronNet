@@ -1,0 +1,58 @@
+﻿@model VarDoc.Models.Patients
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Patients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nom_patient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.prenom_patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prenom_patient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.pere_patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.pere_patient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tel_patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tel_patient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fiche_patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fiche_patient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.date_naissance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.date_naissance)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id_patient" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

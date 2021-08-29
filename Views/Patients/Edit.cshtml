@@ -1,0 +1,54 @@
+﻿@model VarDoc.Models.Patients
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
+}
+
+<h2>Modifier Patient</h2>
+
+<hr />
+<div class="row">
+    <div class="col-sm-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_patient" />
+                    <div class="form-group">
+                        <label asp-for="nom_patient" class="control-label"></label>
+                        <input asp-for="nom_patient" class="form-control" />
+                        <span asp-validation-for="nom_patient" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="pere_patient" class="control-label"></label>
+                        <input asp-for="pere_patient" class="form-control" />
+                        <span asp-validation-for="pere_patient" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fiche_patient" class="control-label"></label>
+                        <input asp-for="fiche_patient" class="form-control" readonly="readonly"/>
+                        <span asp-validation-for="fiche_patient" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="prenom_patient" class="control-label"></label>
+                        <input asp-for="prenom_patient" class="form-control" />
+                        <span asp-validation-for="prenom_patient" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="tel_patient" class="control-label"></label>
+                        <input asp-for="tel_patient" class="form-control" />
+                        <span asp-validation-for="tel_patient" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="date_naissance" class="control-label"></label>
+                        <input asp-for="date_naissance" class="form-control" />
+                        <span asp-validation-for="date_naissance" class="text-danger"></span>
+                    </div>
+            <div class="form-group">
+                <input type="submit" value="Confirmer" class="btn btn-primary" />
+                <a type="button" class="btn btn-default" asp-action="Index">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
