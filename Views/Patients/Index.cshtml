@@ -70,11 +70,8 @@
             "responsive": true,
              "processing": true,
              dom: 'Bfrtip',
-             "buttons": [{
-                extend: 'copy',
-                text: 'Copier'
-                },
-                "csv", "excel", "pdf", {
+             "buttons": [
+                "csv", "excel", {
                 extend: 'print',
                 text: 'Imprimer',
                 title: 'Liste des Patients',
@@ -130,10 +127,10 @@
                 deferRender: true,
                 columns: [
                     { "data": "patientId" },
+                    { "data": "lastname", "autoWidth": true },
                     { "data": "firstname", "autoWidth": true},
-                    { "data": "lastname", "autoWidth": true},
                     { "data": "fathername", "autoWidth": true },
-                    { "data": "birthdate", "autoWidth": true, sorttype: "date", unformat: pickDate },
+                    { "data": "birthdate", "autoWidth": true,},
                     { "data": "phone", "autoWidth": true},
                     { "data": "file", "autoWidth": true},
                     {

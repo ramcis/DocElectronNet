@@ -67,9 +67,11 @@
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Prénom du père</th>
+                        <th>Père</th>
                         <th>Date de naissance</th>
                         <th>Téléphone</th>
+                        <th>No. Fiche</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +81,7 @@
                         <td>@Html.DisplayFor(model => model.pere_patient)</td>
                         <td>@Html.DisplayFor(model => model.date_naissance)</td>
                         <td>@Html.DisplayFor(model => model.tel_patient)</td>
+                        <td>@Html.DisplayFor(model => model.fiche_patient)</td>
                     </tr>
 
                 </tbody>

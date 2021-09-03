@@ -64,7 +64,7 @@ namespace VarDoc.Controllers
         public IActionResult Create()
         {
             int count;
-            int i = 0;
+            int i = 1;
             string dte = DateTime.Now.Year.ToString();
             var matches = (from m in _context.Patient
                            where m.fiche_patient.Contains(dte)
