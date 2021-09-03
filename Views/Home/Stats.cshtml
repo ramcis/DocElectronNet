@@ -1,0 +1,72 @@
+﻿@{ ViewData["Title"] = "Stats";
+    Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml"; }
+
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="~/main/google-fonts.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/main/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="~/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/dist/js/demo.js"></script>
+<script src="~/main/loader.js"></script>
+
+
+<h2 class="text-info">
+    <i class="nav-icon fas fa-chart-pie"></i>
+    Statistiques Générales
+</h2>
+<hr />
+<br />
+<div id="piechart_div" style="border: 1px solid #ccc; width: 2000px; height: 1000px;"></div>
+
+<script>$(document).ready(function () {
+
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            contentType: "application/json",
+            url: "/Home/GetStats",
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    drawChart(result);
+                });
+            }
+        });
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        function drawChart(result) {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('number', 'Nombre');
+            var dataArray = [];
+            $.each($.parseJSON(result), function (i, obj) {
+                dataArray.push([obj.Name, obj.Total]);
+            });
+
+            data.addRows(dataArray);
+
+            var piechart_options = {
+                title: 'Groupement des patients par age',
+
+            };
+            var piechart = new google.visualization.ColumnChart(document
+                .getElementById('piechart_div'));
+            piechart.draw(data, piechart_options);
+
+        }
+    });</script>

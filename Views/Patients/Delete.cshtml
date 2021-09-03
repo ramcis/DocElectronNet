@@ -5,11 +5,31 @@
     Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+@*
+    <div class="modal fade" id="modal-danger">
+        <div class="modal-dialog">
+            <div class="modal-content bg-danger">
+                <div class="modal-header">
+                    <h4 class="modal-title">Are you sure you want to delete this ?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-<h3>Are you sure you want to delete this?</h3>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-light">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<h2 class="text-danger" >
+    <i class="fas fa-exclamation-triangle"></i>
+    Suppression!!
+</h2>
+<h3>Etes vous sure de vouloir supprimer ce patient?</h3>
 <div>
-    <h4>Patients</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,10 +69,10 @@
             @Html.DisplayFor(model => model.date_naissance)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="id_patient" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        <a type="button" class="btn btn-default" asp-action="Index">Retour</a>
     </form>
 </div>

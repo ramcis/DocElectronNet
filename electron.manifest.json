@@ -13,13 +13,10 @@
     "copyright": "Copyright © 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",
-    "win": {
-      "icon": "Assets/pat.ico"
-    },
     "directories": {
-      "output": "../../../bin/Desktop",
-      "buildResources": "Assets"
+      "output": "../../../bin/Desktop"
     },
+    "icon": "../../../Assets/logo.png",
     "extraResources": [
       {
         "from": "./bin",

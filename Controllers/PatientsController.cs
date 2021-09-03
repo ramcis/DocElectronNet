@@ -39,22 +39,7 @@ namespace VarDoc.Controllers
         {
             return View(await _context.Patient.ToListAsync());
         }
-        public void generateFiche()
-        {
-            int count;
-            int i = 0;
-            string dte = DateTime.Now.Year.ToString();
-            var matches = (from m in _context.Patient
-                           where m.fiche_patient.Contains(dte)
-                           select new
-                           {
-                               ficheNo = m.fiche_patient.Trim()
-                           }).Count();
-            string mtc = matches.ToString().Trim('"', '{', '=', '"', '}').Replace("ficheNo", "").Replace("=", "").TrimStart();
-            count = int.Parse(mtc) + (i++);
-            ViewBag.FileNo = dte + "/" + (mtc);
 
-        }
         // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -63,6 +48,7 @@ namespace VarDoc.Controllers
                 return NotFound();
             }
 
+
             var patients = await _context.Patient
                 .FirstOrDefaultAsync(m => m.id_patient == id);
             if (patients == null)
@@ -70,6 +56,7 @@ namespace VarDoc.Controllers
                 return NotFound();
             }
 
+ 
             return View(patients);
         }
 
@@ -172,7 +159,22 @@ namespace VarDoc.Controllers
 
             return View(patients);
         }
+        public async Task<IActionResult> DeletePatient(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var patients = await _context.Patient
+                .FirstOrDefaultAsync(m => m.id_patient == id);
+            if (patients == null)
+            {
+                return NotFound();
+            }
+            _context.Patient.Remove(patients); await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -2,53 +2,107 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<link rel="stylesheet" href="~/main/google-fonts.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 
-<div>
-    <h4>Patients</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nom_patient)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.nom_patient)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.prenom_patient)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.prenom_patient)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.pere_patient)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.pere_patient)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.tel_patient)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.tel_patient)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.fiche_patient)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.fiche_patient)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.date_naissance)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.date_naissance)
-        </dd>
-    </dl>
+<!-- jQuery -->
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/dist/js/demo.js"></script>
+<style>
+    @@media print {
+        @@page {
+            size: auto; /* auto is the initial value */
+            margin: 0mm; /* this affects the margin in the printer settings */
+        }
+    }
+</style>
+
+<h2>
+    <i class="nav-icon fas fa-file"></i>
+    Infos Patient
+</h2>
+
+<!-- Main content -->
+<div class="invoice p-3 mb-3">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-12">
+            <h4>
+                <i class="fas fa-globe"></i> VarDoc, Inc.
+            </h4>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            Emetteur
+            <address>
+                <strong>Dr Mhadhbi Badreddine .</strong><br>
+                Spécialiste des Maladies et Chirurgie des Yeux<br>
+                <strong>Adresse:</strong> Immeuble Benneda Rue des Martyrs-Sidi Bouzid<br>
+                <strong>Tel:</strong> 76625500<br>
+                <strong>Email:</strong> dr.mhadhbi@gnet.tn
+            </address>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <!-- Table row -->
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Prénom du père</th>
+                        <th>Date de naissance</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.nom_patient)</td>
+                        <td>@Html.DisplayFor(model => model.prenom_patient)</td>
+                        <td>@Html.DisplayFor(model => model.pere_patient)</td>
+                        <td>@Html.DisplayFor(model => model.date_naissance)</td>
+                        <td>@Html.DisplayFor(model => model.tel_patient)</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-12">
+            <a onclick="display()" class="btn btn-default"><i class="fas fa-print"></i> Imprimer</a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.id_patient">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<script>
+
+    // window.addEventListener("load", window.print());
+</script>
+<script>
+    function display() {
+
+        window.print();
+    }
+</script>
+

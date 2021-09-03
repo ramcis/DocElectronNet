@@ -13,23 +13,23 @@ namespace VarDoc.Models
         [Key]
         public int id_patient { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Nom")]
         public string nom_patient { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Prénom")]
         public string prenom_patient { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Père")]
         public string pere_patient { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Téléphone")]
         public string tel_patient { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "nnvarchar (250)")]
         [DisplayName("Fiche")]
         public string fiche_patient { get; set; }
 

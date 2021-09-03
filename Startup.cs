@@ -29,11 +29,12 @@ namespace VarDoc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddMvc();
             services.AddRazorPages();
             services.AddControllersWithViews();
             services.AddDbContext<DocDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("DevConnection")));
+                    options.UseMySQL(Configuration.GetConnectionString("DevConnection")));
             services.AddElectron();
         }
 
@@ -42,7 +43,7 @@ namespace VarDoc
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Error");
             }
             else
             {
@@ -74,18 +75,27 @@ namespace VarDoc
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+            Bootstrap();
+            var menu = new MenuItem[]
+            {
+
+            };
+            Electron.Menu.SetApplicationMenu(menu);
+            //  Electron.AutoUpdater.CheckForUpdatesAndNotifyAsync();
         }
         public async void Bootstrap()
         {
             var options = new BrowserWindowOptions
             {
-                //  Frame = false,
+                // Frame = false,
                 WebPreferences = new WebPreferences
                 {
                     NodeIntegration = true,
                     NativeWindowOpen = true
-                }
+
+                },
+                UseContentSize = true,
+                Icon = "wwwroot/assets/logo.png"
             };
             await Electron.WindowManager.CreateWindowAsync(options);
 
