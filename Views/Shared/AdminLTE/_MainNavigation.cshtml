@@ -41,6 +41,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a asp-controller="FicheP" asp-action="Index" class="nav-link @Url.MakeActiveClass("ficheP","index")">
+                        <i class="nav-icon fa fa-file"></i>
+                        <p>
+                            Liste des Fiches
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="FicheP" asp-action="Create" class="nav-link @Url.MakeActiveClass("ficheP","create")">
+                        <i class="nav-icon fa fa-folder-plus"></i>
+                        <p>
+                            Ajouter Fiche
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a asp-controller="Calendar" asp-action="Index" class="nav-link @Url.MakeActiveClass("calendar","index")">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>

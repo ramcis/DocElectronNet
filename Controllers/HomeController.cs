@@ -27,7 +27,10 @@ namespace VarDoc.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
-        public JsonResult GetPeople(int n)
+
+        [Route("api/user/UpdateCart")]
+
+        public JsonResult GetPeople()
         {
             DateTime moment = DateTime.Now;
             var today = moment.Year;
@@ -42,7 +45,7 @@ namespace VarDoc.Controllers
             string jzon = JsonConvert.SerializeObject(groupedResult);
             return Json(jzon);
         }
-        public JsonResult GetStats(int n)
+        public JsonResult GetStats()
         {
             DateTime moment = DateTime.Now;
             var today = moment.Year;

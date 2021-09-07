@@ -25,19 +25,21 @@ namespace VarDoc.Models
         [DisplayName("Père")]
         public string pere_patient { get; set; }
 
+        [DisplayName("Date de Naissance")]
+        // [Required(ErrorMessage = "Veuillez Remplir tous les champs")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        public DateTime date_naissance { get; set; }
+
         [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Téléphone")]
         public string tel_patient { get; set; }
 
-        [Column(TypeName = "nnvarchar (250)")]
+        [Column(TypeName = "nvarchar (250)")]
         [DisplayName("Fiche")]
         public string fiche_patient { get; set; }
+        public List<FicheP> FichePs { get; set; }
 
-        [DisplayName("Date de Naissance")]
-       // [Required(ErrorMessage = "Veuillez Remplir tous les champs")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
-        public DateTime date_naissance { get; set; }
 
     }
 }

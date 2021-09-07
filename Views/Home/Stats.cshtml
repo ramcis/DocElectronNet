@@ -5,9 +5,9 @@
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="~/main/google-fonts.css">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 <script src="~/plugins/jquery/jquery.min.js"></script>
 <script src="~/main/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -35,7 +35,7 @@
             type: 'POST',
             dataType: "json",
             contentType: "application/json",
-            url: "/Home/GetStats",
+            url: "/api/user/UpdateCart",
             success: function (result) {
                 google.charts.load('current', {
                     'packages': ['corechart']

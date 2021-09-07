@@ -13,6 +13,7 @@
 <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/adminlte.min.js"></script>
 <script src="assets/js/bootstrap-datepicker.min.js"></script>
+
 <style>
     thead input {
         width: 100%;
@@ -54,7 +55,6 @@
     </table>
 </div>
 
-<div id="PlaceHolderHere"></div>
 <script>
     $(document).ready(function() {
      $('#dynamic-table thead tr').clone(true).addClass('filters').appendTo( '#dynamic-table thead' );
@@ -175,10 +175,7 @@
                 $(this).parents('th').find('input').trigger('change');
             });
         });
-        $('#dynamic-table tbody').on('click', 'button', function () {
-            var data = table.row($(this).parents('tr')).data();
-            alert(data[0] + "'s salary is: " + data[5]);
-        });
+
         function pickDate(cellvalue, options, cell) {
             setTimeout(function () {
                 $(cell).find('input[type=text]')
@@ -187,76 +184,6 @@
         }
     });
 
-</script>
-<script>
-    $(function () {
-        var PlaceHolderElement = $('#PlaceHolderHere');
-        $('button[data-toggle="modal"]').click(function (event) {
-            var url = $(this).data('url');
-            $got(url).done(function (data) {
-                PlaceHolderElement.html(data);
-                PlaceHolderElement.find('.modal').modal('show');
-            })
-        })          
-    })
-</script>
-<script>
-    $((function () {
-        var url;
-        var redirectUrl;
-        var target;
-
-        $('body').append(`
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Warning</h4>
-                        </div>
-                        <div class="modal-body delete-modal-body">
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel-delete">Cancel</button>
-                            <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>`);
-
-        //Delete Action
-        $(".delete").on('click', (e) => {
-            e.preventDefault();
-
-            target = e.target;
-            var Id = $(target).data('id_patient');
-            var controller = $(target).data('Patients');
-            var action = $(target).data('Delete');
-            var bodyMessage = $(target).data('body-message');
-
-            url = "/" + controller + "/" + action + "?Id=" + Id;
-            $(".delete-modal-body").text(bodyMessage);
-            $("#deleteModal").modal('show');
-        });
-
-        $("#confirm-delete").on('click', () => {
-            $.get(url)
-                .done((result) => {
-                    if (!redirectUrl) {
-                        return $(target).parent().parent().hide("slow");
-                    }
-                    window.location.href = redirectUrl;
-                })
-                .fail((error) => {
-                    if (redirectUrl)
-                        window.location.href = redirectUrl;
-                }).always(() => {
-                    $("#deleteModal").modal('hide');
-                });
-        });
-
-    }()));
 </script>
 
 

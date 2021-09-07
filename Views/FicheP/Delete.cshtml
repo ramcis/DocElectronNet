@@ -1,0 +1,132 @@
+﻿@model VarDoc.Models.FicheP
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
+}
+
+
+<h2 class="text-danger">
+    <i class="nav-icon fas fa-pen"></i>
+    Supprimer la Fiche
+</h2>
+<h3>Etes vous sur de vouloir supprimer cette fiche?</h3>
+
+<hr />
+
+<div class="card card-danger">
+    <div class="card-header">
+        <h3 class="card-title">Formulaire de Fiche</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_fiche" />
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label asp-for="job" class="control-label"></label>
+                        <input asp-for="job" class="form-control" />
+                        <span asp-validation-for="job" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="anticedent" class="control-label"></label>
+                        <input asp-for="anticedent" class="form-control" />
+                        <span asp-validation-for="anticedent" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="anticedent_churgical" class="control-label"></label>
+                        <input asp-for="anticedent_churgical" class="form-control" />
+                        <span asp-validation-for="anticedent_churgical" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="anticedent_medical" class="control-label"></label>
+                        <input asp-for="anticedent_medical" class="form-control" />
+                        <span asp-validation-for="anticedent_medical" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label asp-for="ficheNo" class="control-label">No Fiche</label>
+                        <input asp-for="ficheNo" class="form-control" id="show" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="id_patient" class="control-label">Référence</label>
+                        <input asp-for="id_patient" class="form-control" type="number" id="teach" readonly />
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Confirmer" class="btn btn-danger" />
+                <a type="button" class="btn btn-default" asp-action="Index">Retour</a>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@*<h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>FicheP</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.job)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.job)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.anticedent)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.anticedent)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.anticedent_churgical)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.anticedent_churgical)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.anticedent_medical)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.anticedent_medical)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patients)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patients.id_patient)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="id_fiche" />
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+*@

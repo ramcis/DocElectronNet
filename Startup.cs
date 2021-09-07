@@ -33,6 +33,10 @@ namespace VarDoc
             services.AddMvc();
             services.AddRazorPages();
             services.AddControllersWithViews();
+/*            services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);*/
+
             services.AddDbContext<DocDbContext>(options =>
                     options.UseMySQL(Configuration.GetConnectionString("DevConnection")));
             services.AddElectron();
@@ -43,7 +47,8 @@ namespace VarDoc
         {
             if (env.IsDevelopment())
             {
-                app.UseExceptionHandler("/Error");
+                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Error");
             }
             else
             {

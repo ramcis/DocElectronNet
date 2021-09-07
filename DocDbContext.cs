@@ -14,15 +14,19 @@ namespace VarDoc
         {
         }
         public DbSet<Patients> Patient { get; set; }
+        public DbSet<FicheP> FichePs { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Patients>().ToTable("Patients");
+            modelBuilder.Entity<FicheP>().ToTable("FicheP");
+/*
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            }
+            }*/
 
         }
     }

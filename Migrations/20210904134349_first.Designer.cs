@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VarDoc;
 
 namespace VarDoc.Migrations
 {
     [DbContext(typeof(DocDbContext))]
-    partial class DocDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210904134349_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +84,7 @@ namespace VarDoc.Migrations
                     b.HasOne("VarDoc.Models.Patients", "Patients")
                         .WithMany("FichePs")
                         .HasForeignKey("id_patient")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Patients");

@@ -27,9 +27,9 @@ namespace VarDoc.Controllers
                 firstname = x.prenom_patient,
                 lastname = x.nom_patient,
                 fathername = x.pere_patient,
+                birthdate = x.date_naissance.ToShortDateString(),
                 file = x.fiche_patient,
                 phone = x.tel_patient,
-                birthdate = x.date_naissance.ToShortDateString()
 
             }).ToList();
             return Json(patientsContext);
@@ -37,7 +37,7 @@ namespace VarDoc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Patient.ToListAsync());
+            return View();
         }
 
         // GET: Patients/Details/5
@@ -73,8 +73,9 @@ namespace VarDoc.Controllers
                                ficheNo = m.fiche_patient.Trim()
                            }).Count();
             string mtc = matches.ToString().Trim('"', '{', '=', '"', '}').Replace("ficheNo", "").Replace("=", "").TrimStart();
+
             count = int.Parse(mtc) + (i++);
-            ViewBag.FileNo = dte + "/" + (mtc);
+            ViewBag.FileNo = dte + "/" + (count);
 
             return View();
         }
