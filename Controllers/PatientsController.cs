@@ -66,8 +66,9 @@ namespace VarDoc.Controllers
             int count;
             int i = 1;
             string dte = DateTime.Now.Year.ToString();
+            string strdte = dte.Substring(2);
             var matches = (from m in _context.Patient
-                           where m.fiche_patient.Contains(dte)
+                           where m.fiche_patient.Contains(strdte)
                            select new
                            {
                                ficheNo = m.fiche_patient.Trim()
@@ -75,7 +76,7 @@ namespace VarDoc.Controllers
             string mtc = matches.ToString().Trim('"', '{', '=', '"', '}').Replace("ficheNo", "").Replace("=", "").TrimStart();
 
             count = int.Parse(mtc) + (i++);
-            ViewBag.FileNo = dte + "/" + (count);
+            ViewBag.FileNo = (count) + "/" + strdte;
 
             return View();
         }

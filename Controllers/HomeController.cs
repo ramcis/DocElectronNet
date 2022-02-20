@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,14 +21,16 @@ namespace VarDoc.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly DocDbContext _context;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IToastNotification _toastNotification;
 
-        public HomeController(ILogger<HomeController> logger, DocDbContext context, IWebHostEnvironment _webHostEnvironment)
+        public HomeController(ILogger<HomeController> logger, DocDbContext context, IToastNotification toastNotification)
         {
             _logger = logger;
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
+            _toastNotification = toastNotification;
         }
 
+        [HttpPost]
         [Route("api/user/UpdateCart")]
 
         public JsonResult GetPeople()
@@ -45,22 +48,6 @@ namespace VarDoc.Controllers
             string jzon = JsonConvert.SerializeObject(groupedResult);
             return Json(jzon);
         }
-        public JsonResult GetStats()
-        {
-            DateTime moment = DateTime.Now;
-            var today = moment.Year;
-            var regio = _context.Patient.ToList();
-            var groupedResult = regio.GroupBy(o => o.date_naissance.Year).ToList().
-                Select(grp => new
-                {
-                    Name = ((today - _context.Patient.Find(grp.Key).date_naissance.Year)).ToString(),
-                    Total = grp.Count(x => Convert.ToBoolean(x.id_patient))
-                }).OrderByDescending(res => res.Total).ToList();
-            string jzon = JsonConvert.SerializeObject(groupedResult);
-            return Json(jzon);
-
-        }
-
 
         public IActionResult Index()
         {
@@ -111,9 +98,15 @@ namespace VarDoc.Controllers
         [HttpPost]
         public IActionResult ConvertFile(ConxString cnx)
         {
-            JObject obj = (JObject)JToken.FromObject(cnx) ;
-            CreateFile(obj);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                ViewBag.pass = "VarDoc2021";
+                JObject obj = (JObject)JToken.FromObject(cnx);
+                CreateFile(obj);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
 
         private void CreateFile(JObject obj)

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +31,10 @@ namespace VarDoc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddMvc();
+            services.AddMvc().AddNToastNotifyToastr();
             services.AddRazorPages();
             services.AddControllersWithViews();
+
 /*            services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);*/
@@ -57,6 +59,7 @@ namespace VarDoc
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseNToastNotify();
 
             app.UseRouting();
             app.UseCors(builder => builder

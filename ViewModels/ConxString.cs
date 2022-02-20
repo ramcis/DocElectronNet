@@ -11,7 +11,6 @@ namespace VarDoc.ViewModels
         public string AllowedHosts { get; set; }
 
         [Required(ErrorMessage = "Veuillez insérer une configuration valide")]
-
         public Dictionary<string,string> ConnectionStrings { get; set; }
     }
 }
